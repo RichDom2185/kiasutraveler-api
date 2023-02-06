@@ -1,0 +1,4 @@
+# YAML
+singleQuote: false
+semi: true
+tabWidth: 2

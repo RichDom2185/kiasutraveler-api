@@ -1,0 +1,14 @@
+{
+  "name": "rhag",
+  "version": "0.0.1",
+  "description": "Ride-hailing aggregator API",
+  "main": "index.js",
+  "repository": "https://github.com/RichDom2185/rhag",
+  "author": "Richard Dominick",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
