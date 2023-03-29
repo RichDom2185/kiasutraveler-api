@@ -9,7 +9,7 @@ export const ROUTE_TYPE_DRIVE = "drive";
 export const ROUTE_TYPE_PUBLIC_TRANSPORT = "pt";
 export const ROUTE_TYPE_CYCLING = "cycle";
 
-export const getWaypoints = async (
+export const getWaypointsStandard = async (
   token,
   startLat,
   startLng,
