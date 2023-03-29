@@ -9,6 +9,7 @@ import {
   ROUTE_TYPE_WALK,
   TRANSIT_MODES,
 } from "../controllers/routing.js";
+import { errorUnprocessableEntity } from "../utils/errors.js";
 import { getOneMapApiToken } from "../utils/functions.js";
 
 const router = express.Router();
@@ -28,8 +29,7 @@ router.get("/", (req, res) => {
       endLat = parseFloat(endLat);
       endLng = parseFloat(endLng);
     } catch (e) {
-      res.status(422);
-      res.json({ error: "Unprocessable Entity" });
+      errorUnprocessableEntity(res);
       return;
     }
     switch (mode) {
@@ -49,14 +49,12 @@ router.get("/", (req, res) => {
         const { date, time, vehicleType, maxWalkDistance, numItineraries } =
           req.query;
         if (!date || !time || !vehicleType) {
-          res.status(422);
-          res.json({ error: "Unprocessable Entity" });
+          errorUnprocessableEntity(res);
           return;
         }
         // TODO: Validate correct date and time formats
         if (!TRANSIT_MODES.includes(vehicleType)) {
-          res.status(422);
-          res.json({ error: "Unprocessable Entity" });
+          errorUnprocessableEntity(res);
           return;
         }
         getWaypointsWithDateTimeTransport(
@@ -74,8 +72,7 @@ router.get("/", (req, res) => {
         ).then(data => res.json(data));
         return;
       default:
-        res.status(422);
-        res.json({ error: "Unprocessable Entity" });
+        errorUnprocessableEntity(res);
         break;
     }
   });
