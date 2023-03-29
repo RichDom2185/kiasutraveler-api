@@ -85,7 +85,7 @@ export const getWaypointsWithDateTimeTransport = async (
 
   const data = res.data;
   const routes = data.plan.itineraries;
-  const responseData = routes.map(({ duration, legs }) => {
+  const responseData = routes.map(({ duration, legs, fare }) => {
     const parsedLegs = legs.map(
       ({
         startTime,
@@ -115,7 +115,7 @@ export const getWaypointsWithDateTimeTransport = async (
       }
     );
 
-    return { duration, legs: parsedLegs };
+    return { duration, fare, legs: parsedLegs };
   });
 
   return { itineraries: responseData };
