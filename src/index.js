@@ -6,12 +6,16 @@ dotenv.config();
 
 import { GRAB_ENDPOINT_URL, USER_AGENT } from "./constants.js";
 
+import routingRouter from "./routes/routing.js";
+
 const app = express();
 const port = process.env.PORT ?? 3000;
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+app.use("/routes", routingRouter);
 
 const availableServiceTypes = ["grab"];
 
