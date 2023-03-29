@@ -11,13 +11,15 @@ export const ROUTE_TYPE_CYCLING = "cycle";
 
 export const getWaypoints = async (
   token,
-  from = "1.3557467791,103.9871103",
-  to = "1.2943507656757305,103.77389728148182",
-  routeType = ROUTE_TYPE_DRIVE
+  startLat,
+  startLng,
+  endLat,
+  endLng,
+  routeType
 ) => {
   const params = {
-    start: from,
-    end: to,
+    start: `${startLat},${startLng}`,
+    end: `${endLat},${endLng}`,
     routeType,
     token,
   };
@@ -30,17 +32,12 @@ export const getWaypoints = async (
       precision: 5,
     });
 
-    // Do something with latlngs
     return {
       // Need to convert to [longitude, latitude]
-      // FIXME: Remove string hardcoding
-      // TODO: Add destination waypoint
       waypoints: [
-        from
-          .split(",")
-          .reverse()
-          .map(s => parseFloat(s)),
+        [startLng, startLat],
         ...latlngs.map(latlng => latlng.reverse()),
+        [endLng, endLat],
       ],
       directions: res.data["route_instructions"],
     };
