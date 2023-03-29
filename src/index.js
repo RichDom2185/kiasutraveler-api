@@ -1,5 +1,8 @@
 import axios from "axios";
+import * as dotenv from "dotenv";
 import express from "express";
+
+dotenv.config();
 
 import { GRAB_ENDPOINT_URL, USER_AGENT } from "./constants.js";
 
