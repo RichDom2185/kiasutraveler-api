@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   getOneMapApiToken().then(token => {
-    console.log(token);
     getWaypoints(token).then(data => res.json(data));
   });
 });
