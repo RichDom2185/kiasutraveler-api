@@ -4,6 +4,9 @@ import L from "polyline-encoded";
 const ONEMAP_API_ROUTING_ENDPOINT =
   "https://developers.onemap.sg/privateapi/routingsvc/route";
 
+// Fixed to be 5 by API requirement
+const COORDINATE_PRECISION = 5;
+
 export const ROUTE_TYPE_WALK = "walk";
 export const ROUTE_TYPE_DRIVE = "drive";
 export const ROUTE_TYPE_PUBLIC_TRANSPORT = "pt";
@@ -29,7 +32,7 @@ export const getWaypointsStandard = async (
   const encoded = res.data["route_geometry"];
   if (encoded !== undefined || encoded !== "" || encoded != null) {
     const latlngs = L.decode(encoded, {
-      precision: 5,
+      precision: COORDINATE_PRECISION,
     });
 
     return {
