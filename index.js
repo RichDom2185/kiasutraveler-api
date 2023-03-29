@@ -37,13 +37,16 @@ app.get("/fare-estimates", (req, res) => {
       Referer: "https://www.grab.com/sg/fare-check/",
     },
   };
-  axios.post(GRAB_ENDPOINT_URL, body, options).then(res => {
-    const data = res.data;
-    res.json(data);
-    return;
-  });
-  res.status(500);
-  res.json({ message: "Something went wrong." });
+  axios
+    .post(GRAB_ENDPOINT_URL, body, options)
+    .then(response => {
+      const data = response.data;
+      res.json(data);
+    })
+    .catch(err => {
+      res.status(err.status);
+      res.json({ message: "Something went wrong." });
+    });
 });
 
 app.listen(port, () => {
