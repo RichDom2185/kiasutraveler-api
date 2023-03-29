@@ -1,4 +1,5 @@
 import axios from "axios";
+import L from "polyline-encoded";
 
 const ONEMAP_API_ROUTING_ENDPOINT =
   "https://developers.onemap.sg/privateapi/routingsvc/route";
@@ -21,5 +22,28 @@ export const getWaypoints = async (
     token,
   };
   const res = await axios.get(ONEMAP_API_ROUTING_ENDPOINT, { params });
-  return res.data;
+
+  // From https://www.onemap.gov.sg/docs/#decoding-route_geometry
+  const encoded = res.data["route_geometry"];
+  if (encoded !== undefined || encoded !== "" || encoded != null) {
+    const latlngs = L.decode(encoded, {
+      precision: 5,
+    });
+
+    // Do something with latlngs
+    return {
+      // Need to convert to [longitude, latitude]
+      // FIXME: Remove string hardcoding
+      // TODO: Add destination waypoint
+      waypoints: [
+        from
+          .split(",")
+          .reverse()
+          .map(s => parseFloat(s)),
+        ...latlngs.map(latlng => latlng.reverse()),
+      ],
+      directions: res.data["route_instructions"],
+    };
+  }
+  return { error: "Something went wrong." };
 };
