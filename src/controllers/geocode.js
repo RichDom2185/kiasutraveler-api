@@ -25,8 +25,8 @@ export const getCoordinatesFromAddress = async (
           block: BLK_NO,
           roadName: ROAD_NAME,
           postalCode: POSTAL,
-          lat: LATITUDE,
-          lng: LONGITUDE,
+          lat: parseFloat(LATITUDE),
+          lng: parseFloat(LONGITUDE),
         };
       }),
   };
@@ -53,7 +53,7 @@ export const getAddressesFromCoordinates = async (
   const buildings = res.data["GeocodeInfo"];
 
   return {
-    buildings: buildings.map(
+    results: buildings.map(
       ({ BUILDINGNAME, BLOCK, ROAD, POSTALCODE, LATITUDE, LONGITUDE }) => {
         return {
           name: BUILDINGNAME,
