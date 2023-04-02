@@ -1,9 +1,12 @@
 import axios from "axios";
 
-import { GRAB_ENDPOINT_URL, USER_AGENT } from "../constants.js";
+import { USER_AGENT } from "../constants.js";
 
 export const RIDE_HAILING_TYPE_GRAB = "grab";
 export const RIDE_HAILING_SERVICES = [RIDE_HAILING_TYPE_GRAB];
+
+const GRAB_AVAILABLE_SERVICES_ENDPOINT =
+  "https://www.grab.com/wp-json/api/farefeed/v1/estimate";
 
 export const getAvailableGrabServices = async (
   startLat,
@@ -27,7 +30,7 @@ export const getAvailableGrabServices = async (
     },
   };
 
-  const res = await axios.post(GRAB_ENDPOINT_URL, body, options);
+  const res = await axios.post(GRAB_AVAILABLE_SERVICES_ENDPOINT, body, options);
   const { services } = res.data;
   const parsedServices = services.map(
     ({
