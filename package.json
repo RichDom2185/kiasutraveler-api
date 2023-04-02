@@ -6,7 +6,8 @@
   "repository": "https://github.com/RichDom2185/rhag",
   "author": "Richard Dominick",
   "scripts": {
-    "start": "nodemon -q src/index.js"
+    "dev": "nodemon -q src/index.js",
+    "start": "node src/index.js"
   },
   "dependencies": {
     "adm-zip": "^0.5.10",
