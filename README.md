@@ -1,3 +1,3 @@
-# RHAG
+# kiasutraveler-api
 
-**R**ide-**h**ailing **ag**gregator API
+API source code for kiasutraveler. Written in Express.js.
