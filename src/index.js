@@ -3,6 +3,7 @@ import express from "express";
 
 dotenv.config();
 
+import carsRouter from "./routes/cars.js";
 import geocodeRouter from "./routes/geocode.js";
 import rideHailingRouter from "./routes/rideHailing.js";
 import routingRouter from "./routes/routing.js";
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
   res.send("Hello from kiasutraveler API!");
 });
 
+app.use("/cars", carsRouter);
 app.use("/geocode", geocodeRouter);
 app.use("/ride_hailing", rideHailingRouter);
 app.use("/routes", routingRouter);
