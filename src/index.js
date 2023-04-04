@@ -12,12 +12,12 @@ const app = express();
 const port = process.env.PORT ?? 3000;
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello from kiasutraveler API!");
 });
 
-app.use("/routes", routingRouter);
-app.use("/ride_hailing", rideHailingRouter);
 app.use("/geocode", geocodeRouter);
+app.use("/ride_hailing", rideHailingRouter);
+app.use("/routes", routingRouter);
 app.use("/traffic", trafficRouter);
 
 app.listen(port, () => {
