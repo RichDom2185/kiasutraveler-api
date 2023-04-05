@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.get("/rainfall", (req, res) => {
   const { date, time } = req.query;
-  // TODO: Validate date and time are YYYY-MM-DD and HH:mm:ss respectively
+  // TODO: Validate date and time are YYYY-MM-DD and HH:mm:ss
+  //       respectively, if they are provided.
   // Undefined is fine, as that will just return the current data
   getRainfallData(date, time).then(data => res.json(data));
 });
