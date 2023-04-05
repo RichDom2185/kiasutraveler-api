@@ -37,7 +37,15 @@ router.get("/", (req, res) => {
       );
       return;
     case RIDE_HAILING_TYPE_TAXI:
-      getAvailableTaxis().then(data => res.json(data));
+      const { date, time } = req.query;
+      // Both undefined are fine, as that will just return the current data
+      if ((!date && time) || (date && !time)) {
+        errorBadRequest(res);
+        return;
+      }
+      // TODO: Validate date and time are YYYY-MM-DD and HH:mm:ss
+      //       respectively, if they are provided.
+      getAvailableTaxis(date, time).then(data => res.json(data));
       return;
     default:
       errorUnprocessableEntity(res);

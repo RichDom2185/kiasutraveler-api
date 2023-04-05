@@ -55,7 +55,10 @@ const DATA_GOV_TAXI_AVAILABILITY_ENDPOINT =
   "https://api.data.gov.sg/v1/transport/taxi-availability";
 
 // No manipulation needed, data is already in GeoJSON format
-export const getAvailableTaxis = async () => {
-  const res = await axios.get(DATA_GOV_TAXI_AVAILABILITY_ENDPOINT);
+export const getAvailableTaxis = async (date, time) => {
+  const params = {
+    date_time: date && time ? `${date}T${time}` : undefined,
+  };
+  const res = await axios.get(DATA_GOV_TAXI_AVAILABILITY_ENDPOINT, { params });
   return res.data;
 };
