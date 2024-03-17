@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const ONEMAP_API_SEARCH_ENDPOINT =
-  "https://developers.onemap.sg/commonapi/search";
+  "https://www.onemap.gov.sg/api/common/elastic/search";
 
-// https://www.onemap.gov.sg/docs/#search
+// https://www.onemap.gov.sg/apidocs/apidocs#search
 export const getCoordinatesFromAddress = async (
   address,
   maxNumOfResults = 8
@@ -33,9 +33,9 @@ export const getCoordinatesFromAddress = async (
 };
 
 const ONEMAP_API_REVERSE_GEOCODE_ENDPOINT =
-  "https://developers.onemap.sg/privateapi/commonsvc/revgeocode";
+  "https://www.onemap.gov.sg/api/public/revgeocode";
 
-// https://www.onemap.gov.sg/docs/#reverse-geocode-wgs84
+// https://www.onemap.gov.sg/apidocs/apidocs#reverse-geocode-wgs84
 export const getAddressesFromCoordinates = async (
   token,
   latitude,
@@ -44,12 +44,14 @@ export const getAddressesFromCoordinates = async (
 ) => {
   const params = {
     location: `${latitude},${longitude}`,
-    token,
     buffer: maxDistance,
     otherFeatures: "Y",
   };
 
-  const res = await axios.get(ONEMAP_API_REVERSE_GEOCODE_ENDPOINT, { params });
+  const res = await axios.get(ONEMAP_API_REVERSE_GEOCODE_ENDPOINT, {
+    params,
+    headers: { Authorization: `Bearer ${token}` },
+  });
   const buildings = res.data["GeocodeInfo"];
 
   return {
