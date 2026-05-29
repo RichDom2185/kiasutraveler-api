@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "adm-zip": "^0.5.10",
-    "axios": "^1.15.2",
+    "axios": "^1.16.0",
     "dotenv": "^17.0.0",
     "express": "^5.0.0",
     "polyline-encoded": "^0.0.9"
