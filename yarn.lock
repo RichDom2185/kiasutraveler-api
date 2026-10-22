@@ -170,9 +170,9 @@ depd@^2.0.0, depd@~2.0.0:
   integrity sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==
 
 dotenv@^18.0.0:
-  version "18.0.1"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-18.0.1.tgz#27ad1fefc173e754a9a0a68fcd8aa71b267ed37f"
-  integrity sha512-0eR4m4D/jH5eaI3evo2ZqqMii5mrTCR12v12VChdie6O1gPHs7XAjzTep0CWc1Bd+oNx3vVfbi734dK4zghigw==
+  version "18.0.9"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-18.0.9.tgz#5c565760ce7e6fb69f9477ebcd1a3b64c766f9c8"
+  integrity sha512-3fVOW4cB02R066PUSwn8O4TJyz9NckQl7F81blIbaq9jKBm2tSmOKky7ZHIXzGvkVPXCSn6jkpziBPZdGFs8Tw==
 
 dunder-proto@^1.0.1:
   version "1.0.1"
